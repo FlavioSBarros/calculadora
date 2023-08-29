@@ -1,35 +1,86 @@
-// elementos
+function botao(num) {
+	var numero = document.getElementById("display").innerHTML;
+	 document.getElementById("display").innerHTML = numero + num;
+};
+
+
+function onClickOperacao (ope){
+	var valorAtual = document.getElementById('display').innerHTML,
+	valorTop = document.getElementById('displaytop').innerHTML,
+	ultimoDigitoTop = valorTop.substring(valorTop.length -1, valorTop.length);
+	if (ultimoDigitoTop == "+" || ultimoDigitoTop == "-" || ultimoDigitoTop == "*" || ultimoDigitoTop == "÷") {
+		var aDigito = valorTop.split(" "),
+		num1 = aDigito[0],
+		num2 = valorAtual;
+
+		var resultado = realizaCalculo(num1, num2, ultimoDigitoTop)
+		document.getElementById("displaytop").innerHTML = resultado +" "+ ope
+
+		document.getElementById("display").innerHTML = "";
+
+	}else {
+	   document.getElementById("displaytop").innerHTML = valorAtual + ' ' + ope;
+	   document.getElementById("display").innerHTML = ""
+
+	}
+
+}
+
+function realizaCalculo(num1, num2, ope) {
+	switch (ope){
+		case "+":
+		var resultado = parseInt(num1) + parseInt(num2);
+		break;
+		case "-":
+		var resultado = parseInt(num1) - parseInt(num2);
+		break;
+		case "*":
+		var resultado = parseInt(num1) * parseInt(num2);
+		break;
+		case "÷":
+		var resultado = parseInt(num1) / parseInt(num2);
+		break;
+
+		default:
+			break
+
+	}
+	document.getElementById("display").innerHTML = resultado;
+	return resultado;
+}
+
+function equal () {
+	var valorTop = document.getElementById('displaytop').innerHTML,
+	valorAtual = document.getElementById('display').innerHTML,
+	ultimoDigitoTop = valorTop.substring(valorTop.length -1, valorTop.length);
+
+	if (ultimoDigitoTop == "+" || ultimoDigitoTop == "-" || ultimoDigitoTop == "*" || ultimoDigitoTop == "÷" ) {
+		var aDigito = valorTop.split(" "),
+		num1 = aDigito[0],
+		num2 = valorAtual;
+
+		var  resultado = realizaCalculo (num1, num2, ultimoDigitoTop);
+		document.getElementById('display').innerHTML = resultado;
+		document.getElementById("displaytop").innerHTML = "";
+	}
+	
+}
+
+
+function ac() {
+	document.getElementById("display").innerHTML ='';
+	document.getElementById("displaytop").innerHTML ='';
+}
+
+function back(){
+	var display = document.getElementById('display').innerHTML;document.getElementById('display').innerHTML = display.substring(0, display.length -1);
+
+}
+
+// variaveis do display timer 
 const hourEl = document.querySelector(".hour");
 const minutoEl = document.querySelector(".minute");
 const displayEl = document.querySelector(".display");
-
-const acEl = document.querySelector(".ac");
-const pmEl = document.querySelector(".pm")
-const percentEl = document.querySelector(".percent");
-
-
-const additionEl = document.querySelector(".addition");
-const subtrationEl = document.querySelector(".subtration");
-const multiplicationEl = document.querySelector(".multiplication");
-const divisionEl = document.querySelector(".division");
-const equal = document.querySelector(".equal");
-
-const decimalEl = document.querySelector(".decimal");
-const number0El = document.querySelector(".number-0");
-const number1El = document.querySelector(".number-1");
-const number2El = document.querySelector(".number-2");
-const number3El = document.querySelector(".number-3");
-const number4El = document.querySelector(".number-4");
-const number5El = document.querySelector(".number-5");
-const number6El = document.querySelector(".number-6");
-const number7El = document.querySelector(".number-7");
-const number8El = document.querySelector(".number-8");
-const number9El = document.querySelector(".number-9");
-const numberElArray = [
-	number0El, number1El, number2El, number3El, number4El,
-	number5El, number6El, number7El, number8El, number9El
-];
-
 
 
 //dislplay hora e minuto

@@ -2,7 +2,10 @@ function botao(num) {
 	var numero = document.getElementById("display").innerHTML;
 	 document.getElementById("display").innerHTML = numero + num;
 };
-
+function sings (sin) {
+	var sinal = document.getElementById('display').innerHTML;
+	document.getElementById('display').innerHTML = sinal + sin;
+};
 
 function onClickOperacao (ope){
 	var valorAtual = document.getElementById('display').innerHTML,
